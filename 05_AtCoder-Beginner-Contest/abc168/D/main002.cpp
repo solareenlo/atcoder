@@ -1,0 +1,46 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+#define REP(i, n) for (int i = 0; i < (n); i++)
+using namespace std;
+
+int main() {
+    cin.tie(0);
+    ios::sync_with_stdio(false);
+
+    int n, m;
+    cin >> n >> m;
+
+    vector<vector<int> > dp(n);
+    REP(i, m) {
+        int a, b;
+        cin >> a >> b;
+        dp[a-1].push_back(b-1);
+        dp[b-1].push_back(a-1);
+    }
+
+    vector<int> dist(n, -1);
+    queue<int> q;
+    vector<int> pre(n, -1);
+
+    dist[0] = 0;
+    q.push(0);
+
+    while(!q.empty()) {
+        int v = q.front();
+        q.pop();
+        for (int i : dp[v]) {
+            if (dist[i] != -1) continue ;
+            dist[i] = dist[v] + 1;
+            q.push(i);
+            pre[i] = v;
+        }
+    }
+
+    cout << "Yes" << '\n';
+    REP(i, n) {
+        if (i == 0) continue ;
+        cout  << pre[i] + 1<< '\n';
+    }
+    return 0;
+}
