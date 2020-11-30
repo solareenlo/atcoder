@@ -1,5 +1,5 @@
 # AtCoder
-- AtCoder の問題を C++ で解いたリポジトリ．
+- AtCoder の問題を練習したリポジトリ．
 
 ## 練習具合
 - https://kenkoooo.com/atcoder/#/table/solareenlo
