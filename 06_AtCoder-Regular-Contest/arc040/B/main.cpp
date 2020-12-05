@@ -3,8 +3,6 @@
 using namespace std;
 
 int main() {
-	cin.tie(0)->sync_with_stdio(false);
-
 	int n, r; cin >> n >> r;
 	string s; cin >> s;
 	reverse(s.begin(), s.end());
@@ -19,7 +17,6 @@ int main() {
 			if (j < n)
 				s[j] = 'o';
 	}
-
 	cout << cnt << '\n';
 	return 0;
 }
