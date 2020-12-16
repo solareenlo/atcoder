@@ -1,16 +1,13 @@
 #include <bits/stdc++.h>
-#define REP(i, n) for (int i = 0; i < (n); i++)
 using namespace std;
 
 int main() {
 	int n; cin >> n;
-	vector<int> Q(n + 1, 0);
-	int maxi = 0;
-	REP(i, n) {
-		int P; cin >> P;
-		Q[P] = Q[P - 1] + 1;
-		maxi = max(maxi, Q[P]);
+	vector<int> dp(n + 1);
+	for (int i = 0; i < n; i++) {
+		int p; cin >> p;
+		dp[p] = dp[p - 1] + 1;
 	}
-	cout << n - maxi << '\n';
-    return 0;
+	cout << n - *max_element(dp.begin(), dp.end()) << '\n';
+	return 0;
 }

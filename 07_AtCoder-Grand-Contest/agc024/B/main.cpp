@@ -1,13 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+int q[200002];
 int main() {
 	int n; cin >> n;
-	vector<int> dp(n + 1);
 	for (int i = 0; i < n; i++) {
 		int p; cin >> p;
-		dp[p] = dp[p - 1] + 1;
+		q[p+1] = q[p]+1;
 	}
-	cout << n - *max_element(dp.begin(), dp.end()) << '\n';
+	cout << n - *max_element(q, q+n+2) << '\n';
 	return 0;
 }
