@@ -1,28 +1,25 @@
-#include <iostream>
-#include <map>
-#include <set>
-#include <vector>
-#define REP(i, n) for (int i = 0; i < (n); i++)
+#include <bits/stdc++.h>
 using namespace std;
+using P = pair<int, int>;
 
+vector<P> G[100001];
+int RES[100001];
 
-void solve(long long N, std::vector<long long> u, std::vector<long long> v, std::vector<long long> w){
-
+void dfs(int now, int pre, int color) {
+	RES[now] = color;
+	for (auto g : G[now])
+		if (g.first != pre)
+			dfs(g.first, now, color^(g.second&1));
 }
 
-int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-    long long N;
-    scanf("%lld",&N);
-    std::vector<long long> u(N-1);
-    std::vector<long long> v(N-1);
-    std::vector<long long> w(N-1);
-    for(int i = 0 ; i < N-1 ; i++){
-        scanf("%lld",&u[i]);
-        scanf("%lld",&v[i]);
-        scanf("%lld",&w[i]);
-    }
-    solve(N, std::move(u), std::move(v), std::move(w));
-    return 0;
+int main() {
+	int n; cin >> n;
+	for (int i = 1; i < n; i++) {
+		int u, v, w; cin >> u >> v >> w;
+		G[u].emplace_back(v, w);
+		G[v].emplace_back(u, w);
+	}
+	dfs(1, 0, 0);
+	for (int i = 1; i <= n; i++)
+		cout << RES[i] << '\n';
 }
