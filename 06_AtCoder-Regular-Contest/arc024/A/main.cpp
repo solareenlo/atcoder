@@ -3,28 +3,21 @@
 using namespace std;
 
 int main() {
-    cin.tie(0)->sync_with_stdio(false);
+	int L, R; cin >> L >> R;
+	multiset<int> l, r;
+	REP(i, L) {
+		int t; cin >> t;
+		l.insert(t);
+	}
+	REP(i, R) {
+		int t; cin >> t;
+		r.insert(t);
+	}
+	multiset<int> res;
+	set_intersection(l.begin(), l.end(),
+			r.begin(), r.end(),
+			inserter(res, res.end()));
 
-    int L, R;
-    cin >> L >> R;
-
-    multiset<int> l, r;
-    REP(i, L) {
-        int tmp;
-        cin >> tmp;
-        l.insert(tmp);
-    }
-    REP(i, R) {
-        int tmp;
-        cin >> tmp;
-        r.insert(tmp);
-    }
-
-    multiset<int> res;
-    set_intersection(l.begin(), l.end(),
-            r.begin(), r.end(),
-            inserter(res, res.end()));
-
-    cout << res.size() << '\n';
-    return 0;
+    cout << (int)res.size() << '\n';
+	return 0;
 }
