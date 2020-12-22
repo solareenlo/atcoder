@@ -1,1 +1,1 @@
-# [Donutsプロコンチャレンジ2015](https://atcoder.jp/contests/donuts-2015/tasks)
+# [Donutsプロコンチャレンジ2015](https://atcoder.jp/contests/donuts-2015)
