@@ -1,36 +1,18 @@
-#include <iostream>
-#include <queue>
-#include <queue>
+#include <bits/stdc++.h>
 #define REP(i, n) for (int i = 0; i < (n); i++)
 using namespace std;
 
 int main() {
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-
-    int n, k;
-    cin >> n >> k;
-
-    vector<int> p(n);
-    REP(i, n) cin >> p[i];
-
-    vector<double> ex(n);
-    REP(i, n) ex[i] = (1.0 + p[i]) / 2.0;
-
-    queue<double> q;
-    double maxi = 0.0;
-    double sum = 0.0;
-    REP(i, n) {
-        sum += ex[i];
-        q.push(ex[i]);
-        if (q.size() > k) {
-            sum -= q.front();
-            q.pop();
-        }
-        if (q.size() == k)
-            maxi = max(maxi, sum);
-    }
-
-    printf("%.10f\n", maxi);
-    return 0;
+	int n, k; cin >> n >> k;
+	double s[n+1];
+	s[0] = 0;
+	REP(i, n) {
+		int a; cin >> a;
+		s[i+1] = s[i] + (1.0+a)/2;
+	}
+	double res = 0;
+	REP(i, n+1-k)
+		res = max(res, s[i+k]-s[i]);
+	printf("%.10f\n", res);
+	return 0;
 }

@@ -1,4 +1,4 @@
-# [AtCoder Beginner Contest 154](https://atcoder.jp/contests/abc154/tasks)
+# [AtCoder Beginner Contest 154](https://atcoder.jp/contests/abc154)
 
 ## [D - Dice in Line](https://atcoder.jp/contests/abc154/tasks/abc154_d)
 - 期待値は `(1 + p) / 2.0` で計算できるので，あらかじめ計算しておく．
