@@ -1,4 +1,4 @@
-# [AtCoder Beginner Contest 016](https://atcoder.jp/contests/abc016/tasks)
+# [AtCoder Beginner Contest 016](https://atcoder.jp/contests/abc016)
 
 ## [C - 友達の友達](https://atcoder.jp/contests/abc016/tasks/abc016_3)
 ### 解法２
