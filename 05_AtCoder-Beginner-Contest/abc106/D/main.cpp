@@ -1,36 +1,20 @@
-#include <iostream>
-#include <map>
-#include <set>
-#include <vector>
-#define REP(i, n) for (int i = 0; i < (n); i++)
+#include <bits/stdc++.h>
+#define REP(i, n) for (int i = 1; i <= (n); i++)
 using namespace std;
 
+int c[502][502];
 
-void solve(long long N, long long M, long long Q, std::vector<long long> L, std::vector<long long> R, std::vector<long long> p, std::vector<long long> q){
-
-}
-
-int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-    long long N;
-    scanf("%lld",&N);
-    long long M;
-    scanf("%lld",&M);
-    long long Q;
-    scanf("%lld",&Q);
-    std::vector<long long> L(M);
-    std::vector<long long> R(M);
-    for(int i = 0 ; i < M ; i++){
-        scanf("%lld",&L[i]);
-        scanf("%lld",&R[i]);
-    }
-    std::vector<long long> p(Q);
-    std::vector<long long> q(Q);
-    for(int i = 0 ; i < Q ; i++){
-        scanf("%lld",&p[i]);
-        scanf("%lld",&q[i]);
-    }
-    solve(N, M, Q, std::move(L), std::move(R), std::move(p), std::move(q));
-    return 0;
+int main() {
+	int n, m, Q; cin >> n >> m >> Q;
+	REP(i, m) {
+		int l, r; cin >> l >> r;
+		c[l][r]++;
+	}
+	REP(i, n) REP(j, n) c[i][j] += c[i][j-1];
+	REP(i, n) REP(j, n) c[i][j] += c[i-1][j];
+	REP(i, Q) {
+		int p, q; cin >> p >> q;
+		cout << c[q][q] + c[p-1][p-1] - c[p-1][q] - c[q][p-1] << '\n';
+	}
+	return 0;
 }
