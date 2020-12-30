@@ -1,34 +1,14 @@
 #include <bits/stdc++.h>
-#define REP(i, n) for (int i = 0; i < (n); i++)
 using namespace std;
-using ll = long long;
 
-int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-
-    string s;
-    cin >> s;
-    ll k;
-    cin >> k;
-
-    int n = s.size();
-    int ans = 1;
-    if (n >= k) {
-        REP(i, k) {
-            if (s[i] != '1') {
-                ans = s[i] - '0';
-                break ;
-            }
-        }
-    } else {
-        REP(i, n) {
-            if (s[i] != '1') {
-                ans = s[i] - '0';
-                break ;
-            }
-        }
-    }
-    cout << ans << '\n';
-    return 0;
+int main() {
+	string s; cin >> s;
+	int64_t k; cin >> k;
+	for (int i = 0; i < min(int64_t(s.size()), k); i++)
+		if (s[i] > '1') {
+			cout << s[i] << '\n';
+			return 0;
+		}
+	cout << 1 << '\n';
+	return 0;
 }
