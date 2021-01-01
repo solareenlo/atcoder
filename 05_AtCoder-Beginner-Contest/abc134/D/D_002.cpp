@@ -4,20 +4,16 @@ using namespace std;
 
 int main() {
 	int n; cin >> n;
-	vector<int> a(n+1, 0);
+	int a[n+1];
 	REP(i, n) cin >> a[i];
-	vector<int> b(n+1, 0), res(n+1, 0);
 	int cnt = 0;
 	for (int i = n; i > 0; i--) {
-		int sum = 0;
 		for (int j = i+i; j <= n; j += i)
-			sum += b[j];
-		if (sum%2 != a[i]) {
-			b[i] = 1;
-			res[++cnt] = i;
-		}
+			a[i] ^= a[j];
+		if (a[i]) cnt++;
 	}
 	cout << cnt << '\n';
-	REP(i, cnt) cout << res[i] << '\n';
+	REP(i, n)
+		if (a[i]) cout << i << '\n';
 	return 0;
 }
