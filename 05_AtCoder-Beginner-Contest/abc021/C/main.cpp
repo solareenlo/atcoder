@@ -1,38 +1,30 @@
-#include <iostream>
-#include <map>
-#include <set>
-#include <vector>
+#include <bits/stdc++.h>
 #define REP(i, n) for (int i = 0; i < (n); i++)
 using namespace std;
 
-// 出力
-void print() { std::cout << '\n'; }
-template <class T>void print(const T &x) {std::cout << x <<'\n';}
-template <class T, class... Args>void print(const T &x, const Args &... args) {std::cout << x << " ";print(args...);}
-
-const long long MOD = 1000000007;
-
-void solve(long long N, long long a, long long b, long long M, std::vector<long long> x, std::vector<long long> y){
-
-}
-
-int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-    long long N;
-    scanf("%lld",&N);
-    long long a;
-    scanf("%lld",&a);
-    long long b;
-    scanf("%lld",&b);
-    long long M;
-    scanf("%lld",&M);
-    std::vector<long long> x(M);
-    std::vector<long long> y(M);
-    for(int i = 0 ; i < M ; i++){
-        scanf("%lld",&x[i]);
-        scanf("%lld",&y[i]);
-    }
-    solve(N, a, b, M, std::move(x), std::move(y));
+int main() {
+	int n; cin >> n;
+	int a, b; cin >> a >> b; a--; b--;
+	int m; cin >> m;
+	vector<int> d[n];
+	REP(i, m) {
+		int x, y; cin >> x >> y; x--; y--;
+		d[x].push_back(y);
+		d[y].push_back(x);
+	}
+	int dp[n+1][n];
+	memset(dp, 0, sizeof(dp));
+	dp[0][a] = 1;
+	REP(i, n) REP(j, n) {
+		if (dp[i][j] == 0) continue ;
+		if (j == b) {
+			cout << dp[i][j] << '\n';
+			return 0;
+		}
+		REP(k, (int)(d[j].size())) {
+			int to = d[j][k];
+			(dp[i+1][to] += dp[i][j]) %= (int)(1e9+7);
+		}
+	}
     return 0;
 }
