@@ -1,30 +1,22 @@
-#include <iostream>
-#include <map>
-#include <set>
-#include <vector>
+#include <bits/stdc++.h>
 #define REP(i, n) for (int i = 0; i < (n); i++)
 using namespace std;
 
-
-void solve(long long N, long long M, std::vector<long long> x, std::vector<long long> y, std::vector<long long> z){
-
-}
-
-int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-    long long N;
-    scanf("%lld",&N);
-    long long M;
-    scanf("%lld",&M);
-    std::vector<long long> x(N);
-    std::vector<long long> y(N);
-    std::vector<long long> z(N);
-    for(int i = 0 ; i < N ; i++){
-        scanf("%lld",&x[i]);
-        scanf("%lld",&y[i]);
-        scanf("%lld",&z[i]);
-    }
-    solve(N, M, std::move(x), std::move(y), std::move(z));
-    return 0;
+int main() {
+	int n, m; cin >> n >> m;
+	int64_t a[n][3];
+	REP(i, n) REP(j, 3) cin >> a[i][j];
+	int64_t res = -1e16;
+	REP(bit, 8) {
+		int64_t vec[n];
+		bzero(vec, sizeof(vec));
+		REP(i, n) REP(j, 3)
+			vec[i] += ((bit>>j)&1) ? a[i][j] : -a[i][j];
+		sort(vec, vec+n, greater<int64_t>());
+		int64_t sum = 0;
+		REP(i, m) sum += vec[i];
+		res = max(res, sum);
+	}
+	cout << res << '\n';
+	return 0;
 }
