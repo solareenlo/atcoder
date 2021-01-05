@@ -1,20 +1,20 @@
-#include <iostream>
-#include <cmath>
+#include <bits/stdc++.h>
 using namespace std;
 
-void solve(long long D, long long N){
-    int start = pow(100, D);
-    if (N == 100) cout << start * N + 1 * start << '\n';
-    else cout << start * N << '\n';
+inline int cal(int x) {
+	int res = 0;
+	while (x % 100 == 0) {
+		x /= 100;
+		res++;
+	}
+	return res;
 }
 
-int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-    long long D;
-    scanf("%lld",&D);
-    long long N;
-    scanf("%lld",&N);
-    solve(D, N);
-    return 0;
+int main() {
+	int d, n; cin >> d >> n;
+	int cnt = 0, x = 0;
+	while (cnt < n)
+		if(cal(++x) == d) cnt++;
+	cout << x << '\n';
+	return 0;
 }
