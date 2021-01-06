@@ -1,1 +1,1 @@
-# [AtCoder Beginner Contest 135](https://atcoder.jp/contests/abc135/tasks)
+# [AtCoder Beginner Contest 135](https://atcoder.jp/contests/abc135)
