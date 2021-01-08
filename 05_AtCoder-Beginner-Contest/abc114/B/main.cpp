@@ -1,25 +1,15 @@
-#include <iostream>
-#include <cmath>
+#include <bits/stdc++.h>
 #define REP(i, n) for (int i = 0; i < (n); i++)
 using namespace std;
 
-template<class T> inline bool chmin(T &a, T b) {
-    if (a > b) a = b; return true;
-    return false;
-}
-
-int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-    string s;
-    cin >> s;
-
-    int mini = 1000;
-    REP(i, s.size() - 2) {
-        string tmp = s.substr(i, 3);
-        int a = abs(stoi(tmp) - 753);
-        chmin(mini, a);
-    }
-    cout << mini << '\n';
-    return 0;
+int main() {
+	string s; cin >> s;
+	int n = s.size();
+	int mini = 1000;
+	REP(i, n-2) {
+		string sub = s.substr(i, 3);
+		mini = min(mini, abs(stoi(sub) - 753));
+	}
+	cout << mini << '\n';
+	return 0;
 }

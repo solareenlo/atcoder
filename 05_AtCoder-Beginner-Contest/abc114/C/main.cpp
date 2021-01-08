@@ -1,23 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long;
 
 int N, cnt;
 
-void dfs(ll n, bool three, bool five, bool seven) {
+void dfs(int64_t n, bool a, bool b, bool c) {
 	if (n > N) return ;
-	if (three && five && seven) cnt++;
-
-	dfs(10 * n + 3, true, five, seven);
-	dfs(10 * n + 5, three, true, seven);
-	dfs(10 * n + 7, three, five, true);
+	if (a && b && c) cnt++;
+	n *= 10;
+	dfs(n+3, 1, b, c);
+	dfs(n+5, a, 1, c);
+	dfs(n+7, a, b, 1);
 }
 
 int main() {
-	cin.tie(0)->sync_with_stdio(false);
-
 	cin >> N;
-	dfs(0, false, false, false);
+	dfs(0, 0, 0, 0);
 	cout << cnt << '\n';
 	return 0;
 }
