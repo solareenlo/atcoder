@@ -1,12 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
-#include <atcoder/all>
-using namespace atcoder;
-#define REP(i, n) for (int i = 0; i < (n); i++)
-using ll = long long;
 
 int main() {
-    cin.tie(0)->sync_with_stdio(false);
-
-    return 0;
+	int64_t n, C; cin >> n >> C;
+	map<int64_t, int64_t> event;
+	while (n--) {
+		int64_t a, b, c; cin >> a >> b >> c;
+		event[a] += c;
+		event[b+1] -= c;
+	}
+	int64_t res = 0, fee = 0, t = 0;
+	for (auto[x, y] : event) {
+		if (x != t) {
+			res += min(C, fee) * (x - t);
+			t = x;
+		}
+		fee += y;
+	}
+	cout << res << '\n';
+	return 0;
 }
