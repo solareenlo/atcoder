@@ -1,12 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
-#include <atcoder/all>
-using namespace atcoder;
-#define REP(i, n) for (int i = 0; i < (n); i++)
-using ll = long long;
 
 int main() {
-    cin.tie(0)->sync_with_stdio(false);
-
+	int n; cin >> n;
+	int64_t res = 1, x = 1;
+	while (n--) {
+		x <<= 1;
+		string s; cin >> s;
+		if (s == "OR") res += x;
+	}
+	cout << res << '\n';
     return 0;
 }
