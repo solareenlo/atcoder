@@ -7,9 +7,12 @@ int main() {
 	string s[h];
 	REP(i, h) cin >> s[i];
 	int res = 0;
-	REP(i, h-1) REP(j, w-1)
-		if (s[i][j] ^ s[i+1][j] ^ s[i][j+1] ^ s[i+1][j+1])
-			res++;
+	REP(i, h-1) REP(j, w-1) {
+		int cnt = 0;
+		REP(x, 2) REP(y, 2)
+			if (s[i+y][j+x] == '#') cnt++;
+		if (cnt%2) res++;
+	}
 	cout << res << '\n';
-	return 0;
+    return 0;
 }
