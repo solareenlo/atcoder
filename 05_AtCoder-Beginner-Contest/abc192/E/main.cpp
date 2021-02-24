@@ -1,7 +1,30 @@
 #include <bits/stdc++.h>
-#define REP(i, n) for (int i = 0; i < (n); i++)
+#define int int64_t
 using namespace std;
+using P = pair<int, int>;
 
-int main() {
+signed main() {
+	int n, m, x, y; cin >> n >> m >> x >> y;
+	vector<tuple<int, int, int>> g[n+1];
+	while (m--) {
+		int u, v, t, k; cin >> u >> v >> t >> k;
+		g[u].push_back({v, t, k});
+		g[v].push_back({u, t, k});
+	}
+	priority_queue<P, vector<P>, greater<P>> q;
+	vector<int> dist(n+1, 1LL<<62);
+	dist[x] = 0;
+	q.emplace(0, x);
+	while (!q.empty()) {
+		auto [du, u] = q.top(); q.pop();
+		if (dist[u] < du) continue ;
+		for (auto [v, t, k] : g[u]) {
+			if (dist[v] > ((dist[u]+k-1)/k)*k+t) {
+				dist[v] = ((dist[u]+k-1)/k)*k+t;
+				q.emplace(dist[v], v);
+			}
+		}
+	}
+	cout << ((dist[y]==1LL<<62) ? -1 : dist[y]) << '\n';
     return 0;
 }
