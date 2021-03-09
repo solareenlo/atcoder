@@ -8,13 +8,15 @@ int main() {
 	int res = n;
 	REP(i, n) {
 		int a; cin >> a;
-		if (i > m + pos[a])
+		if (i - pos[a] > m)
 			res = min(res, a);
 		pos[a] = i;
 	}
 	REP(i, n)
-		if (n > m + pos[i])
+		if (n - pos[i] > m) {
 			res = min(res, i);
+			break ;
+		}
 	cout << res << '\n';
 	return 0;
 }
