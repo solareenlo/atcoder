@@ -10,18 +10,18 @@ int main() {
 	int x[m];
 	REP(i, m) cin >> x[i];
 	while (q--) {
-		int l, r; cin >> l >> r; l--; r--;
-		multiset<int> s;
-		REP(i, m) if (i<l || r<i) s.insert(x[i]);
+		int l, r; cin >> l >> r;
+		multiset<int> a;
+		REP(i, m) if (i<l-1 || r<=i) a.insert(x[i]);
 		int res = 0;
-		for (auto x : p) {
-			auto itr = s.lower_bound(x.second);
-			if (itr != s.end()) {
-				res += x.first;
-				s.erase(itr);
+		REP(i, n) {
+			auto itr = a.lower_bound(p[i].second);
+			if (itr != a.end()) {
+				res += p[i].first;
+				a.erase(itr);
 			}
 		}
 		cout << res << '\n';
 	}
-	return 0;
+    return 0;
 }
