@@ -1,0 +1,33 @@
+#include <iostream>
+#include <algorithm>
+
+int64_t PRIME[12] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
+int64_t c, res1, res2;
+
+void dfs(int x, int lst, int64_t num, int64_t res) {
+    if (res == res1)
+        res2 = std::min(res2, num);
+    if (res > res1) {
+        res1 = res;
+        res2 = num;
+    }
+    if (x == 12)
+        return;
+    for (int i = 1; i <= lst; i++) {
+        num *= PRIME[x];
+        if (num > c)
+            return;
+        dfs(x+1, i, num, res * (i+1));
+    }
+}
+
+int main() {
+    int t; std::cin >> t;
+    while (t--) {
+        std::cin >> c;
+        res1 = res2 = 0;
+        dfs(0, 1e9, 1, 1);
+        std::cout << res1 << " " << res2 << std::endl;
+    }
+    return 0;
+}
