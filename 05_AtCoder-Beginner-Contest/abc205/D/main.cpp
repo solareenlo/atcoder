@@ -1,8 +1,18 @@
+// Copyright
+#include <algorithm>
 #include <iostream>
-#include <string>
-#include <vector>
-#define REP(i, n) for (int i = 0; i < (n); i++)
+
+int64_t A[100001], n, q, i, k;
 
 int main() {
+    std::cin >> n >> q;
+    for (; i < n; i++) {
+        std::cin >> A[i];
+        A[i] -= i;
+    }
+    while (q--) {
+        std::cin >> k;
+        std::cout << k + std::upper_bound(A, A+n, k)-A << '\n';
+    }
     return 0;
 }
